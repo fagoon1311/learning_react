@@ -3,17 +3,57 @@ import ReactDOM from  "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
+import About from "./components/About";
+import Error from "./components/Error";
+import Contact from "./components/Contact";
+import RestaurantMenu from "./components/RestaurantMenu";
 
 const AppLayout = () => {
   return (
     <> 
     <Header />
-    <Body />
+    <Outlet />
     <Footer />
     </>
   )
 }
+
+const appRouter = createBrowserRouter([
+  {
+    path:"/",
+    element:<AppLayout />,
+    errorElement:<Error />,
+    children:[
+      {
+        path:'/',
+        element:<Body/>
+      },
+      {
+        path:"/about",
+        element:<About/>
+      },
+      {
+        path:"/contact",
+        element:<Contact/>
+      },
+      {
+        path:"/restaurant/:id",
+        element:<RestaurantMenu/>
+      }
+
+
+    ]
+  },
+  // {
+  //   path:"/about",
+  //   element:<About/> since we want to use them between our header and footer we should use them as children so that header and footer 
+  // is always there.
+    
+  // },
+// This is only the config, we also need to provide it to our app.
+]);
+
 // --------------------------
 // styling css using an object since jsx can only have javascript
 // const styleobj = {
@@ -56,7 +96,8 @@ const AppLayout = () => {
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />)
+//root.render(<AppLayout />)
+root.render(<RouterProvider router={appRouter} />)
 
 
 

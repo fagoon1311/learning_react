@@ -4,7 +4,7 @@ import RestaurantCard from "./RestaurantCards"
 import Shimmer from "./shimmer"
 
 function filterData(searchInput, restaurants) {
-  return restaurants.filter((restaurant)=> restaurant?.info?.name?.toLowerCase()?.includes(searchInput.toLowerCase()))
+  return restaurants.filter((restaurant)=> restaurant?.info?.name?.toLowerCase()?.includes(searchInput.toLowerCase() ))
 }
 
 
@@ -19,7 +19,7 @@ const Body = () => {
   useEffect(()=>{
     //APICALL
     getRestaurants()
-  }, [searchInput])
+  }, [searchInput]) 
   
   async function getRestaurants(){
     const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.665956&lng=77.1006&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
@@ -37,9 +37,10 @@ const Body = () => {
   if(!allrestaurants) return null;
   // this all restaurant sometimes might not render quickly when page is loading and might show error of not existing to resolve either use 
   // optional chaingin or avoiding rendering using if or early return shown aboce
-  if(filteredrestaurants?.length == 0) return <h1>No Restaurant found</h1>
 
-  return (allrestaurants?.length == 0) ? <Shimmer/> :(
+  // if(filteredrestaurants?.length === 0) return <h1>No Restaurant found</h1>
+
+  return (allrestaurants?.length ===  0) ? <Shimmer/> :(
       <>
       <div className="search-container">
         <input 
