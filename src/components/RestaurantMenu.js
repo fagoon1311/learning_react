@@ -40,9 +40,12 @@ const RestaurantMenu = () => {
             <div>
                 {console.log(restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards)}
                 <h1>Recommended Items</h1>
-                <ul>
+                {/* <ul>
                    { restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map((item)=><li>{item.card.info.name}</li>) }
-                </ul>
+                </ul> */}
+                {restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.find(
+                    (item) =>item?.card?.card?.["@type"] ==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")?.card?.card?.itemCards.map((item)=> <li>{item.card.info.name}</li>)}
+
             </div>
             
         </div>
