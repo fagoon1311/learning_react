@@ -3,11 +3,9 @@ import { restrautList } from "../Constants"
 import RestaurantCard from "./RestaurantCards"
 import Shimmer from "./shimmer"
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
-
-function filterData(searchInput, restaurants) {
-  return restaurants.filter((restaurant)=> restaurant?.info?.name?.toLowerCase()?.includes(searchInput.toLowerCase() ))
-}
 
 
 const Body = () => {
@@ -32,6 +30,11 @@ const Body = () => {
 
   }
   
+  const isOnline = useOnline()
+  if (!isOnline){
+    return <h1>Please check your internet!!</h1>
+  }
+
   // Conditional Rendering
   // if restaurantList is empty => shimmerUI
   // is not emplty => API datra
