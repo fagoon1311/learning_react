@@ -2,25 +2,16 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { IMG_CDN_LINK } from "../Constants"
 import Shimmer from "./shimmer"
+import useRestaurant from "../utils/useRestaurant"
 const RestaurantMenu = () => {
     const params = useParams()
     const {id} = params
-
+    const restaurant = useRestaurant(id)
     
     // const [restaurant, setRestaurants] = useState({}) to avoid null error we will use null as the initial render not an empty object
-    const [restaurant, setRestaurants] = useState(null)
+    //const [restaurant, setRestaurants] = useState(null)
     
-    useEffect(()=>{
-        getRestaurantinfo()
-    }, [])
-
-    async function getRestaurantinfo (){
-        const data = await 
-        fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.665956&lng=77.1006&restaurantId="+id+"&catalog_qa=undefined&submitAction=ENTER");
-        const json = await data.json();
-        console.log(json.data);
-        setRestaurants(json.data) //data is the object which we have got inside json we fetched from the api.
-    }
+   
 
    
     return (!restaurant)?<Shimmer/> :( 
@@ -44,7 +35,7 @@ const RestaurantMenu = () => {
                    { restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map((item)=><li>{item.card.info.name}</li>) }
                 </ul> */}
                 {restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.find(
-                    (item) =>item?.card?.card?.["@type"] ==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")?.card?.card?.itemCards.map((item)=> <li>{item.card.info.name}</li>)}
+                    (item) =>item?.card?.card?.["@type"] ==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")?.card?.card?.itemCards.map((item)=>  <li>{item.card.info.name}</li>)}
 
             </div>
             
