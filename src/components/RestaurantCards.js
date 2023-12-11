@@ -9,10 +9,10 @@ const RestaurantCard = ({
  }) => {
 
   return( 
-  <div className="card">
+  <div className="w-56  p-5 m-2 shadow-lg bg-yellow-100">
     <img alt="Not Rendered"
     src={IMG_CDN_LINK+cloudinaryImageId}></img>
-    <h2>{name}</h2>
+    <h2 className="font-bold text-lg text-orange-900">{name}</h2>
     <h3>{cuisines.join(", ")}</h3>
     {/* <h4>{sla?.deliveryTime} minutes</h4> */}
   </div>
