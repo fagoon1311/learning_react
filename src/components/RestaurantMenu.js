@@ -15,11 +15,11 @@ const RestaurantMenu = () => {
 
    
     return (!restaurant)?<Shimmer/> :( 
-        <div className="menu">
-            <div>
-                <h1>Restaurant id:{id}</h1>
-                <h2>{restaurant?.cards?.[0]?.card?.card?.info?.name}</h2>
-                <img src={IMG_CDN_LINK+restaurant?.cards?.[0]?.card?.card?.info?.cloudinaryImageId}></img>
+        <div className="flex">
+            <div className="m-2 p-4 bg-yellow-50 rounded-lg">
+                <h1 >Restaurant id:{id}</h1>
+                <h2 className=" font-bold text-5xl text-center text-red-950">{restaurant?.cards?.[0]?.card?.card?.info?.name}</h2>
+                <img className="h-56 w-56 p-2 shadow-lg"src={IMG_CDN_LINK+restaurant?.cards?.[0]?.card?.card?.info?.cloudinaryImageId}></img>
                 <h3>{restaurant?.cards?.[0]?.card?.card?.info?.areaName}</h3>
                 <h3>{restaurant?.cards?.[0]?.card?.card?.info?.city}</h3>
                 <h3>{restaurant?.cards?.[0]?.card?.card?.info?.avgRating} stars</h3>
@@ -28,7 +28,7 @@ const RestaurantMenu = () => {
             {/* {restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards && <div>
                 {console.log(Object.values(restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map((item)=>item.card)))}
             </div>} */}
-            <div>
+            <div className="m-2 p-4 bg-yellow-50 rounded-lg">
                 {console.log(restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards)}
                 <h1>Recommended Items</h1>
                 {/* <ul>

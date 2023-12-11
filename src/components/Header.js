@@ -7,7 +7,7 @@ const Title = () => {
     return (
     <a href='/'>
     <img 
-    className="h-28"
+    className="h-28 p-2"
     alt="FoodVilla"
     src={Logo}></img>
     </a>
@@ -24,15 +24,15 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline()
     return(
-      <div className="flex">
+      <div className="flex justify-between bg-amber-600 shadow-xl">
         <Title />
         <div className="nav-items">
-          <ul>
-             <li><Link to='/'>Home</Link></li>
+          <ul className="flex py-10">
+             <li className="px-2"><Link to='/'>Home</Link></li>
             {/* <a href='/about'><li>About</li></a> */}
-            <li><Link to='/about'>About</Link></li>
-            <li><Link to='/contact'>Contact</Link></li>
-            <li><Link to='/instamart'>Instamart</Link></li>
+            <li className="px-2"><Link to='/about'>About</Link></li>
+            <li className="px-2"><Link to='/contact'>Contact</Link></li>
+            <li className="px-2"><Link to='/instamart'>Instamart</Link></li>
 
             <li>Cart</li> 
           </ul>
