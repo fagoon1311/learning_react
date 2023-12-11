@@ -7,7 +7,7 @@ const Title = () => {
     return (
     <a href='/'>
     <img 
-    className="logo"
+    className="h-28"
     alt="FoodVilla"
     src={Logo}></img>
     </a>
@@ -24,7 +24,7 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline()
     return(
-      <div className="header">
+      <div className="flex">
         <Title />
         <div className="nav-items">
           <ul>
