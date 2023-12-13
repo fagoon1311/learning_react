@@ -5,10 +5,12 @@ import Shimmer from "./shimmer"
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
-
+import userContext from "../utils/UseContext";
+import { useContext } from "react";
 
 
 const Body = () => {
+  const {user, setUser} = useContext(userContext)
   const searchtxt = 'KFC';
   //search text is a local variable (also called state variable)
   const [searchInput, setSearchInput] = useState("");
@@ -69,6 +71,12 @@ const Body = () => {
       }>
         Search
       </button>
+      <input value={user.name} onChange=
+      {e=>setUser(
+        {
+          name:e.target.value,
+          email:"newemail.com"
+        })}></input>
       </div>
       <div className="flex flex-wrap">
         {filteredrestaurants.map((restaurant)=>{

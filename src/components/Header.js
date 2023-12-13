@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Logo from "../assets/img/foodvilla.png";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import userContext from "../utils/UseContext";
 
 const Title = () => {
     return (
@@ -20,6 +21,7 @@ const loggedInUser = () => {
 };
 
 const Header = () => {
+  const {user} = useContext(userContext)
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline()
@@ -37,6 +39,7 @@ const Header = () => {
             <li>Cart</li> 
           </ul>
         </div>
+        {user.name}
         <h1>{isOnline? "✅":"🔴"}</h1>
         {
           
