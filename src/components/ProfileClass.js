@@ -1,4 +1,6 @@
 import React from "react";
+import userContext from "../utils/UseContext";
+import { useContext } from "react";
 
 
 class Profile extends React.Component{

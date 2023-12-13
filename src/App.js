@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState, useContext } from "react";
 import ReactDOM from  "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
 import Shimmer from "./components/shimmer";
+import userContext from "./utils/UseContext";
 
 // we want to use it to depict chunking so we will import it another way using lzyload
 // import Instamart from "./components/Instamart";
@@ -17,12 +18,21 @@ import Shimmer from "./components/shimmer";
 const Instamart = lazy(()=>import("./components/Instamart"))
 const About = lazy(()=>import("./components/About"))
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name:'Fagoon',
+    email:'fagoon@gmail.com'
+  })
+   
   return (
-    <> 
+
+    <userContext.Provider value={{
+      user:user,
+      setUser:setUser
+    }}> 
     <Header />
     <Outlet />
     <Footer />
-    </>
+    </userContext.Provider>
   )
 }
 

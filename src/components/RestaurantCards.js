@@ -1,4 +1,6 @@
 import { IMG_CDN_LINK } from "../Constants";
+import userContext from "../utils/UseContext";
+import { useContext } from "react";
 
 
 const RestaurantCard = ({ 
@@ -8,12 +10,14 @@ const RestaurantCard = ({
   
  }) => {
 
+  const {user} = useContext(userContext)
   return( 
   <div className="w-56  p-5 m-2 shadow-lg bg-yellow-100">
     <img alt="Not Rendered"
     src={IMG_CDN_LINK+cloudinaryImageId}></img>
     <h2 className="font-bold text-lg text-orange-900">{name}</h2>
     <h3>{cuisines.join(", ")}</h3>
+    <h5 className="text-sm font-bold">{user.name} - {user.email}</h5>
     {/* <h4>{sla?.deliveryTime} minutes</h4> */}
   </div>
   )
