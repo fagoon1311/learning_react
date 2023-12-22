@@ -3,10 +3,17 @@ import { useParams } from "react-router-dom"
 import { IMG_CDN_LINK } from "../Constants"
 import Shimmer from "./shimmer"
 import useRestaurant from "../utils/useRestaurant"
+import { useDispatch } from "react-redux"
+import { addItem } from "../utils/cartSlice"
+
 const RestaurantMenu = () => {
     const params = useParams()
     const {id} = params
     const restaurant = useRestaurant(id)
+    const dispatch = useDispatch()
+    const addFoodItem = (item) =>{
+        dispatch(addItem(item.card.info));
+    }
     
     // const [restaurant, setRestaurants] = useState({}) to avoid null error we will use null as the initial render not an empty object
     //const [restaurant, setRestaurants] = useState(null)
@@ -29,13 +36,13 @@ const RestaurantMenu = () => {
                 {console.log(Object.values(restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map((item)=>item.card)))}
             </div>} */}
             <div className="m-2 p-4 bg-yellow-50 rounded-lg">
-                {console.log(restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards)}
+                {/* {console.log(restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards)} */}
                 <h1>Recommended Items</h1>
                 {/* <ul>
                    { restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards.map((item)=><li>{item.card.info.name}</li>) }
                 </ul> */}
                 {restaurant?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.find(
-                    (item) =>item?.card?.card?.["@type"] ==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")?.card?.card?.itemCards.map((item)=>  <li>{item.card.info.name}</li>)}
+                    (item) =>item?.card?.card?.["@type"] ==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")?.card?.card?.itemCards.map((item)=>  <li>{item.card.info.name} - <button className="bg-red-200 p-1 rounded-md" onClick={()=>addFoodItem(item)}>Add</button></li>)}
 
             </div>
             
