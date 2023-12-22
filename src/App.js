@@ -11,6 +11,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
 import Shimmer from "./components/shimmer";
 import userContext from "./utils/UseContext";
+import { Provider } from "react-redux";
+import store from "./utils/Store";
+import Cart from "./components/Cart";
 
 // we want to use it to depict chunking so we will import it another way using lzyload
 // import Instamart from "./components/Instamart";
@@ -24,7 +27,7 @@ const AppLayout = () => {
   })
    
   return (
-
+    <Provider store={store}>
     <userContext.Provider value={{
       user:user,
       setUser:setUser
@@ -33,6 +36,7 @@ const AppLayout = () => {
     <Outlet />
     <Footer />
     </userContext.Provider>
+    </Provider>
   )
 }
 
@@ -70,6 +74,10 @@ const appRouter = createBrowserRouter([
           <Suspense fallback={<Shimmer />}>
           <Instamart/>
           </Suspense> )
+      },
+      {
+        path:"/cart",
+        element:<Cart/>
       }
 
 

@@ -72,11 +72,11 @@ const Body = () => {
         Search
       </button>
       <input value={user.name} onChange=
-      {e=>setUser(
-        {
+      {e=>setUser({
           name:e.target.value,
-          email:"newemail.com"
-        })}></input>
+          email:"newemail.com",
+        })
+        }></input>
       </div>
       <div className="flex flex-wrap">
         {filteredrestaurants.map((restaurant)=>{
